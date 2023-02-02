@@ -20,6 +20,17 @@ Container
 
 .container {
   padding: 20px;
+  text-align: center;
+}
+
+.itemTable {
+  margin-left: auto;
+  margin-right: auto;
+  border: solid 1px black
+}
+
+tr, th, td {
+  border: solid 1px black
 }
 
 /* --------------------------------------------------------------------------------
