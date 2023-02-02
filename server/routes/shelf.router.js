@@ -66,7 +66,10 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
       });
 
 
+
     });
+
+
 
 /**
  * Update an item if it's something the logged in user added
