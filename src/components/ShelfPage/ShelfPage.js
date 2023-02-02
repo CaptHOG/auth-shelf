@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 function ShelfPage() {
   const dispatch = useDispatch();
   const shelf = useSelector(store => store.shelf)
+  const user = useSelector(store => store.user)
   const [itemInput, setItemInput] = useState('');
   const [urlInput, setUrlInput] = useState('');
 
@@ -18,14 +19,26 @@ function ShelfPage() {
     event.preventDefault();
 
     let newItem = {
-      name: itemInput,
-      url: urlInput
+      description: itemInput,
+      image_url: urlInput,
+      user_id: user.id
     }
     console.log('newItem:', newItem)
 
     dispatch({
       type: 'ADD_ITEM',
       payload: newItem
+    })
+  }
+
+  const deleteItem = (item) => {
+    let userAndItemId = {
+      itemId: item.id,
+      user_id: user.id
+    }
+    dispatch({
+      type: 'SAGA_DELETE_ITEM',
+      payload: userAndItemId
     })
   }
 
@@ -69,7 +82,7 @@ function ShelfPage() {
                   <img src={item.image_url} width="300px" height="200px"/>
                 </td>
                 <td>
-                  <button>Remove Item</button>
+                  <button onClick={() => deleteItem(item)}>Remove Item</button>
                 </td>
               </tr>
             )

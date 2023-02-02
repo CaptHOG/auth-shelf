@@ -48,7 +48,12 @@ router.post('/',  (req, res) => {
  */
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
   let itemId = req.params.id
-  let userId = req.body.user_id
+  // if logged in you can access user.id
+  let userId = req.user.id
+
+  console.log('req.params', userId)
+  console.log('req.body', itemId)
+
   let sqlValues = [itemId, userId]
   let sqlQuery = `
   DELETE
@@ -58,7 +63,8 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 
       pool.query(sqlQuery, sqlValues)
       .then((dbRes) => {
-          res.sendStatus(201);
+        console.log('dbRes.rows', dbRes.rows)
+          res.sendStatus(200);
       })
       .catch((dbErr) => {
           console.log(`error in POST: serverside`, dbErr);
