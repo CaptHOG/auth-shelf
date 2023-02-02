@@ -41,7 +41,7 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 	//   WHERE  "user_id" = $1`;
 });
 
-const sqlValues = [userId]
+// const sqlValues = [userId]
 
 /**
  * Update an item if it's something the logged in user added
