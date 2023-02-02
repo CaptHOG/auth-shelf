@@ -49,11 +49,27 @@ router.post('/',  (req, res) => {
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
   let itemId = req.params.id
   let userId = req.body.user_id
-  // const sqlQuery = `DELETE FROM "item"
-	//   WHERE  "user_id" = $1`;
-});
+  let sqlValues = [itemId, userId]
+  let sqlQuery = `
+  DELETE
+  FROM "item"
+	  WHERE "item"."id" = $1
+	    AND "item"."user_id" = $2`;
 
-// const sqlValues = [userId]
+      pool.query(sqlQuery, sqlValues)
+      .then((dbRes) => {
+          res.sendStatus(201);
+      })
+      .catch((dbErr) => {
+          console.log(`error in POST: serverside`, dbErr);
+          res.sendStatus(500);
+      });
+
+
+
+    });
+
+
 
 /**
  * Update an item if it's something the logged in user added

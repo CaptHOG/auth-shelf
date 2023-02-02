@@ -1,3 +1,4 @@
+
 const shelf = (state = [], action) => {
   switch (action.type) {
     case "SET_SHELF":
@@ -6,6 +7,7 @@ const shelf = (state = [], action) => {
       return [...state];
     default:
       return state;
+
   }
 };
 
