@@ -17,6 +17,17 @@ function* getShelf() {
 
 function* shelfSaga() {
   yield takeEvery('FETCH_SHELF', getShelf)
+  yield takeEvery('ADD_ITEM', addItem)
+}
+
+function* addItem(){
+  try {
+    const response = yield axios.post('/api/shelf', action.payload);
+    console.log( response); 
+    yield put ({ type: 'ADD_TO_SHELF', payload: action.payload});
+  } catch (error){
+    console.log('Error with addItem in ItemTable', error)
+  }
 }
 
 
