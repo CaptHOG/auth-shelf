@@ -3,7 +3,7 @@ const shelf = (state = [], action) => {
     case 'SET_SHELF':
       return action.payload;
     case 'ADD_TO_SHELF':
-      return [...state];
+      return [...state, state];
     // case 'DELETE_ITEM':
     //   return [...state];
     default:
