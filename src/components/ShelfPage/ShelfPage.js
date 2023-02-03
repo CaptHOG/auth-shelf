@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 
 function ShelfPage() {
@@ -8,6 +9,7 @@ function ShelfPage() {
   const user = useSelector(store => store.user)
   const [itemInput, setItemInput] = useState('');
   const [urlInput, setUrlInput] = useState('');
+  const history = useHistory();
 
   useEffect(() => {
     dispatch({
@@ -42,6 +44,11 @@ function ShelfPage() {
       type: 'SAGA_DELETE_ITEM',
       payload: userAndItemId
     })
+  }
+
+  const updateItem = (item) => {
+    console.log('item:', item)
+    history.push('/info')
   }
 
   // test URL
@@ -85,6 +92,7 @@ function ShelfPage() {
                 </td>
                 <td>
                   <button onClick={() => deleteItem(item)}>Remove Item</button>
+                  <button onClick={() => updateItem(item)}>Edit Item</button>
                 </td>
               </tr>
             )
