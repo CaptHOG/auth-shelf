@@ -15,6 +15,7 @@ function ShelfPage() {
     })
   }, [])
 
+  // POST
   const addItem = (event) => {
     event.preventDefault();
 
@@ -31,6 +32,7 @@ function ShelfPage() {
     })
   }
 
+  // DELETE
   const deleteItem = (item) => {
     let userAndItemId = {
       itemId: item.id,
