@@ -9,6 +9,10 @@ function InfoPage() {
   return (
     <div className="container">
       <p>Info Page</p>
+      <input
+        placeholder=""
+      />
+      <input/>
     </div>
   );
 }

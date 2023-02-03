@@ -25,9 +25,9 @@ function* addItem(action){
 function* deleteItem(action) {
   try {
     const response = yield axios.delete(`/api/shelf/${action.payload.itemId}`)
-    console.log('action.payload item.id:', action.payload.itemId)
-    console.log('action.payload user_id:', action.payload.user_id)
-    console.log('response:', response)
+    // console.log('action.payload item.id:', action.payload.itemId)
+    // console.log('action.payload user_id:', action.payload.user_id)
+    // console.log('response:', response)
 
     const idToSend = {
       userId: action.payload.user_id,
