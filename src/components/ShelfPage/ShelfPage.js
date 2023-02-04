@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import ItemTable from '../ItemTable';
 
 
 function ShelfPage() {
   const dispatch = useDispatch();
-  const shelf = useSelector(store => store.shelf)
   const user = useSelector(store => store.user)
   const [itemInput, setItemInput] = useState('');
   const [urlInput, setUrlInput] = useState('');
-  const history = useHistory();
 
   useEffect(() => {
     dispatch({
@@ -32,23 +30,6 @@ function ShelfPage() {
       type: 'ADD_ITEM',
       payload: newItem
     })
-  }
-
-  // DELETE
-  const deleteItem = (item) => {
-    let userAndItemId = {
-      itemId: item.id,
-      user_id: user.id
-    }
-    dispatch({
-      type: 'SAGA_DELETE_ITEM',
-      payload: userAndItemId
-    })
-  }
-
-  const updateItem = (item) => {
-    console.log('item:', item)
-    history.push('/info')
   }
 
   // test URL
@@ -83,21 +64,7 @@ function ShelfPage() {
           </tr>
         </thead>
         <tbody>
-          {shelf.map((item) => {
-            return (
-              <tr key={item.id}>
-                <td>{item.description}</td>
-                <td>
-                  <img src={item.image_url} width="300px" height="200px"/>
-                </td>
-                <td>
-                  <button onClick={() => deleteItem(item)}>Remove Item</button>
-                  <button onClick={() => updateItem(item)}>Edit Item</button>
-                </td>
-              </tr>
-            )
-          })}
-          
+          <ItemTable />
         </tbody>
       </table>
     </div>

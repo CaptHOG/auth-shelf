@@ -5,14 +5,21 @@ import React from 'react';
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is
 
-function InfoPage() {
+function InfoPage(event) {
+  const updateItem = () => {
+    event.preventDefault();
+  }
+
   return (
     <div className="container">
       <p>Info Page</p>
       <input
-        placeholder=""
+        placeholder="New Name"
       />
-      <input/>
+      <input
+        placeholder="New Image URL"
+      />
+      <button onClick={updateItem}>Update Item</button>
     </div>
   );
 }
