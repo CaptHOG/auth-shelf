@@ -7,6 +7,7 @@ function ItemTable() {
   const dispatch = useDispatch();
   const shelf = useSelector(store => store.shelf)
   const history = useHistory();
+  const user = useSelector(store => store.user)
 
   useEffect(() => {
     dispatch({ type: 'FETCH_SHELF' });
